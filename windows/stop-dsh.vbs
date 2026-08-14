@@ -22,9 +22,9 @@ For Each line In Split(text, vbCrLf)
 Next
 
 If pid = "" Then
-  WScript.Echo "没有找到监听 " & PORT & " 端口的 dsh 进程"
+  WScript.Echo "No dsh process listening on port " & PORT
   WScript.Quit 0
 End If
 
 shell.Run "taskkill /PID " & pid & " /T /F", 0, True
-WScript.Echo "已停止 dsh（PID " & pid & "）"
+WScript.Echo "Stopped dsh (PID " & pid & ")"

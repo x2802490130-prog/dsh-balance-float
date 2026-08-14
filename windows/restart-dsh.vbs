@@ -2,7 +2,7 @@
 ' PORT, waits for the port to free, then starts a fresh instance through
 ' launch-dsh.vbs (hidden window, opens the browser when ready).
 '
-' Use this when the running instance is stale — e.g. right after installing
+' Use this when the running instance is stale - e.g. right after installing
 ' or upgrading plugins, since plugins only load at boot.
 '
 ' Launch (double-click the icon) stays safe: it never kills a running
