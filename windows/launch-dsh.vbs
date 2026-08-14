@@ -15,7 +15,8 @@ Const WAIT_SECS = 40
 ' 绑定地址：默认仅本机(127.0.0.1)。想让手机/平板在局域网访问，改为 "0.0.0.0"
 ' 并放行防火墙：netsh advfirewall firewall add rule name="DSH Web" dir=in action=allow protocol=TCP localport=3080
 Const HOST = "127.0.0.1"
-' 快照工具路径（留空 "" = 禁用启动失败自动回退；填绝对路径如 "D:\\tools\\snapshot-tool.mjs"）
+' Snapshot tool path. Empty = boot-failure auto-rollback disabled; set it to an
+' absolute path like "D:\\tools\\snapshot-tool.mjs" to enable rescue-and-retry.
 Const SNAP_TOOL = ""
 
 Dim fso, shell, q, nodeExe, dshBin, url, logPath, cmdLine, i
