@@ -6,7 +6,8 @@
 
 | 文件 | 作用 |
 | --- | --- |
-| `launch-dsh.vbs` | 隐藏窗口启动 dsh web（自动找 node.exe / dsh，输出日志到 `%TEMP%\dsh-web.log`，就绪后打开浏览器） |
+| `launch-dsh.vbs` | 隐藏窗口启动 dsh web（自动找 node.exe / dsh，输出日志到 `%TEMP%\dsh-web.log`，就绪后打开浏览器）；已在运行则只打开浏览器，**绝不杀会话** |
+| `restart-dsh.vbs` | **重启**：先杀掉占用 3080 的旧进程，等端口释放，再走 launch-dsh.vbs 无窗启动（装/升插件后必用） |
 | `stop-dsh.vbs` | 通过 netstat 找到监听 3080 端口的进程并 taskkill（全隐藏） |
 | `launch-dsh.bat` | 双击用的转发器（注意：双击 .bat 本身会闪一下 cmd 黑窗，属 .bat 固有行为） |
 
@@ -33,6 +34,7 @@
 
 ## 常见问题
 
+- **装/升级插件后不生效**：插件只在启动时加载。双击 `restart-dsh.vbs`（先杀旧进程再启动），不要只用启动图标——它检测到端口被占会只开浏览器而不换新进程。
 - **启动后浏览器打开但页面打不开**：看 `%TEMP%\dsh-web.log` 日志；确认已 `npm install -g @deepseek-ai/dsh`。
 - **点击图标没反应**：确认参数里的 .vbs 路径正确且文件存在。
 - **想彻底无窗口退出**：直接在网页右上角悬浮窗点 ⏻（或按 Y），无需本脚本。
