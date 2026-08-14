@@ -74,7 +74,6 @@ for (let i = 3; i < total * 4; i += 4) {
 }
 ok('不透明占比正常', opaque / total > 0.2, (opaque / total * 100).toFixed(1) + '%')
 ok('半透明像素极少', semi / total < 0.05, (semi / total * 100).toFixed(2) + '%（>5% 说明图被半透明污染，需重新生成）')
-if (transparent / total > 0) ok('透明背景完整', transparent / total > 0.2 || semi === 0, (transparent / total * 100).toFixed(1) + '%')
 
 // 3. 边缘背景判定
 const edge = []
@@ -104,20 +103,35 @@ console.log('\n背景判定: ' + {
   unknown: '边缘背景不干净（混有半透明或杂色）',
 }[mode])
 
-// 4. 背景纹理/马赛克警告
-if (mode === 'transparent') {
-  let dev = 0, n = 0
-  for (let y = 0; y < h; y += 6) for (let x = 0; x < w; x += 6) {
-    const i = (y * w + x) * 4
-    if (data[i + 3] >= 250) {
-      const i2 = (Math.min(y + 6, h - 1) * w + Math.min(x + 6, w - 1)) * 4
-      dev += Math.abs(data[i] - data[i2]) + Math.abs(data[i + 1] - data[i2 + 1]) + Math.abs(data[i + 2] - data[i2 + 2])
-      n++
+// 4. 分块纹理地图：马赛克/格子背景检测（不透明区域内的剧烈色差）
+{
+  const B = 40
+  const cols = Math.floor(w / B), rows = Math.floor(h / B)
+  let hi = 0, blocks = 0
+  for (let gy = 0; gy < rows; gy++) for (let gx = 0; gx < cols; gx++) {
+    let n = 0, sR = 0, sG = 0, sB = 0
+    const pts = []
+    for (let y = gy * B; y < (gy + 1) * B; y += 4) for (let x = gx * B; x < (gx + 1) * B; x += 4) {
+      const i = (y * w + x) * 4
+      if (data[i + 3] >= 250) { n++; sR += data[i]; sG += data[i + 1]; sB += data[i + 2]; pts.push(data[i], data[i + 1], data[i + 2]) }
     }
+    if (n < 12) continue
+    blocks++
+    const mR = sR / n, mG = sG / n, mB = sB / n
+    let dev = 0
+    for (let k = 0; k < pts.length; k += 3) dev += Math.abs(pts[k] - mR) + Math.abs(pts[k + 1] - mG) + Math.abs(pts[k + 2] - mB)
+    dev /= n * 3
+    if (dev > 42) hi++
   }
-  dev /= n * 3
-  if (dev > 45) warns.push('不透明区域纹理剧烈（平均差 ' + dev.toFixed(0) + '）：背景可能混入了马赛克/格子图案，请目视确认背景是否干净')
-  else console.log('背景纹理检查: ✅ 平缓（平均差 ' + dev.toFixed(0) + '）')
+  const ratio = blocks ? hi / blocks : 0
+  const pct = (ratio * 100).toFixed(0)
+  if (ratio > 0.35) {
+    fails.push('背景马赛克/纹理占比 ' + pct + '%（>35%：背景疑似画入了网格/马赛克，需重新生成纯色或纯透明背景）')
+  } else if (ratio > 0.15) {
+    warns.push('高纹理块占比 ' + pct + '%：背景可能混有格子/马赛克图案，请目视确认；如需去底请重新生成纯色/纯透明背景')
+  } else {
+    console.log('背景纹理检查: ✅ 平缓（高纹理块 ' + pct + '%）')
+  }
 }
 
 console.log('\n结论: ' + (fails.length === 0 ? '✅ 可以一键处理成图标' : '❌ ' + fails.join('；') + ' —— 需重新生成'))
