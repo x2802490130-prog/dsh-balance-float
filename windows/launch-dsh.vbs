@@ -27,14 +27,14 @@ q = Chr(34)
 
 nodeExe = FindNode()
 If nodeExe = "" Then
-  WScript.Echo "找不到 node.exe。请先安装 Node.js（nodejs.org）。"
+  WScript.Echo "node.exe not found. Install Node.js first (https://nodejs.org)."
   WScript.Quit 1
 End If
 
 ' dsh CLI lives in the npm global prefix (%APPDATA%\npm).
 dshBin = shell.ExpandEnvironmentStrings("%APPDATA%") & "\npm\node_modules\@deepseek-ai\dsh\lib\bin.js"
 If Not fso.FileExists(dshBin) Then
-  WScript.Echo "找不到 dsh（" & dshBin & "）。请先执行：npm install -g @deepseek-ai/dsh"
+  WScript.Echo "dsh not found at " & dshBin & ". Run: npm install -g @deepseek-ai/dsh"
   WScript.Quit 1
 End If
 
