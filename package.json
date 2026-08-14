@@ -1,6 +1,6 @@
 {
   "name": "dsh-balance-float",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "DSH Web 插件：右上角悬浮窗实时显示 DeepSeek 余额，支持手动刷新与一键退出（Y/N 快捷键确认）。Floating balance widget + graceful exit for the DeepSeek Harness web UI.",
   "type": "module",
   "main": "lib/index.js",

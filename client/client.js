@@ -42,7 +42,13 @@ window.__ModuleLoader__.load({ id: 'dsh-balance-float', factory: (require) => {
       "[data-balance-float] .bf-pop{display:none;position:absolute;top:calc(100% + 8px);right:0;",
       "padding:10px 14px;border-radius:12px;background:rgba(18,28,52,.92);border:1px solid rgba(140,190,245,.35);",
       "box-shadow:0 8px 24px rgba(10,20,40,.4);color:#C7D6F0;font-size:12px;line-height:20px;white-space:nowrap;}",
-      "[data-balance-float].bf-open .bf-pop{display:block;}"
+      "[data-balance-float].bf-open .bf-pop{display:block;}",
+"@media (max-width: 700px) {",
+"  /* 手机窄屏：下移到会话头部工具栏下方，避免与右上角按钮重叠 */",
+"  [data-balance-float]{top:60px;right:10px;padding:5px 10px;gap:6px;font-size:11px;}",
+"  [data-balance-float] .bf-btn{width:16px;height:16px;font-size:10px;line-height:16px;}",
+"  .bf-exit-pop{top:100px;right:10px;}",
+"}",
     ].join('');
 
     var POLL_MS = 60 * 1000;

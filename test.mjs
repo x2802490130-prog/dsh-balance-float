@@ -75,6 +75,7 @@ check('悬浮窗渲染', !!widget)
 check('电源键存在', !!widget?.querySelector('.bf-power'))
 
 await new Promise(res => setTimeout(res, 80))
+check('手机端断点 CSS 存在', (() => { const s = w.document.querySelector('style'); return s && s.textContent.includes('max-width: 700px'); })())
 check('余额文本正确', w.document.querySelector('.bf-val')?.textContent === '余额 ¥9.98', w.document.querySelector('.bf-val')?.textContent)
 
 const power = widget.querySelector('.bf-power')
