@@ -16,19 +16,19 @@ DeepSeek Harness（DSH）Web 插件：在网页右上角显示一个悬浮窗，
 
 ## 安装
 
-### 方式一：GitHub 直装
+### 方式一：npm（推荐）
+
+```bash
+dsh plugin --profile web add dsh-balance-float
+```
+
+### 方式二：GitHub 直装
 
 ```bash
 dsh plugin --profile web add github:x2802490130-prog/dsh-balance-float
 ```
 
 > 本插件为纯 JavaScript 发布（无构建步骤），git 直装即可使用，无需 pnpm 构建许可（见官方 [publish.md](https://github.com/deepseek-ai/deepseek-harness/blob/HEAD/docs/user/develop/basic/publish.md)）。
-
-### 方式二：npm 发布后
-
-```bash
-dsh plugin --profile web add dsh-balance-float
-```
 
 ### 方式二：本地链接（开发 / 尝鲜）
 
