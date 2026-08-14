@@ -24,7 +24,7 @@
 1. 右键快捷方式 → 属性 → 快捷方式 → 更改图标 → 浏览选择本仓库的 `windows\icon\dsh.ico`（默认原创鲸鱼图标，可放心使用）
 2. 若桌面图标未刷新，按 F5 或注销重登
 
-**想换图标？直接覆盖 `windows\icon\dsh.ico` 这个文件即可**（同名替换，快捷方式无需改动）。
+**想换图标？把你的 `.ico` 存为 `windows\icon\custom.ico`**（该文件被 git 忽略，拉更新永不覆盖；同名替换 dsh.ico 也可但会被仓库更新覆盖）。
 图标版权注意事项（如不要使用 DeepSeek 官方 logo、Pixiv 画师作品需授权等）见 [icon/README.md](./icon/README.md)。
 
 ## 修改端口
