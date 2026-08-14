@@ -2,6 +2,11 @@
 
 DeepSeek Harness（DSH）Web 插件：在网页右上角显示一个悬浮窗，实时显示 DeepSeek 模型账户余额，支持手动刷新与一键优雅退出（Y/N 快捷键确认）。
 
+## 环境要求
+
+- 已安装 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) CLI：`npm install -g @deepseek-ai/dsh`
+- 已配置 DeepSeek API Key（用于余额查询；未配置时悬浮窗显示「获取失败」红点，不影响其他功能，Key 配置方式见下文）
+
 ## 功能
 
 - **实时余额**：悬浮窗每 60 秒自动刷新，展示总余额 / 赠送 / 充值明细
@@ -14,7 +19,7 @@ DeepSeek Harness（DSH）Web 插件：在网页右上角显示一个悬浮窗，
 ### 方式一：GitHub 直装
 
 ```bash
-dsh plugin --profile web add github:x2802490130-prog/studious-journey
+dsh plugin --profile web add github:x2802490130-prog/dsh-balance-float
 ```
 
 > 本插件为纯 JavaScript 发布（无构建步骤），git 直装即可使用，无需 pnpm 构建许可（见官方 [publish.md](https://github.com/deepseek-ai/deepseek-harness/blob/HEAD/docs/user/develop/basic/publish.md)）。

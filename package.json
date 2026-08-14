@@ -42,10 +42,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/x2802490130-prog/studious-journey"
+    "url": "https://github.com/x2802490130-prog/dsh-balance-float"
   },
   "bugs": {
-    "url": "https://github.com/x2802490130-prog/studious-journey/issues"
+    "url": "https://github.com/x2802490130-prog/dsh-balance-float/issues"
   },
   "engines": {
     "node": ">=18"
