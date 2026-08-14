@@ -12,6 +12,9 @@ Option Explicit
 
 Const PORT = 3080
 Const WAIT_SECS = 40
+' 绑定地址：默认仅本机(127.0.0.1)。想让手机/平板在局域网访问，改为 "0.0.0.0"
+' 并放行防火墙：netsh advfirewall firewall add rule name="DSH Web" dir=in action=allow protocol=TCP localport=3080
+Const HOST = "127.0.0.1"
 
 Dim fso, shell, q, nodeExe, dshBin, url, logPath, cmdLine, i
 
@@ -44,7 +47,7 @@ End If
 ' Hidden start (window style 0), output to log.
 ' The whole command is wrapped in one outer quote pair so cmd.exe parses
 ' the two quoted paths correctly (verified against cmd /c semantics).
-cmdLine = "cmd /c " & q & q & nodeExe & q & " " & q & dshBin & q & " web > " & q & logPath & q & " 2>&1" & q
+cmdLine = "cmd /c " & q & q & nodeExe & q & " " & q & dshBin & q & " web --host " & HOST & " > " & q & logPath & q & " 2>&1" & q
 shell.Run cmdLine, 0, False
 
 ' Wait for the port (up to WAIT_SECS seconds), then open the browser.
