@@ -1,0 +1,4 @@
+# Balance float bundle patch: inserts the balance widget into the web roster.
+- insert:
+    - id: dsh-balance-float
+      name: '@dsh-external/dsh-balance-float'

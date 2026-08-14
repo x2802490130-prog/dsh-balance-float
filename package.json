@@ -1,0 +1,54 @@
+{
+  "name": "@dsh-external/dsh-balance-float",
+  "version": "1.0.0",
+  "description": "DSH Web 插件：右上角悬浮窗实时显示 DeepSeek 余额，支持手动刷新与一键退出（Y/N 快捷键确认）。Floating balance widget + graceful exit for the DeepSeek Harness web UI.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./client/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [],
+      "platform": "web"
+    }
+  },
+  "files": [
+    "lib",
+    "client",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^26.0.0"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "balance",
+    "widget",
+    "deepseek-api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/x2802490130-prog/studious-journey"
+  },
+  "bugs": {
+    "url": "https://github.com/x2802490130-prog/studious-journey/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
