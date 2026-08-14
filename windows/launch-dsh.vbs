@@ -15,6 +15,8 @@ Const WAIT_SECS = 40
 ' 绑定地址：默认仅本机(127.0.0.1)。想让手机/平板在局域网访问，改为 "0.0.0.0"
 ' 并放行防火墙：netsh advfirewall firewall add rule name="DSH Web" dir=in action=allow protocol=TCP localport=3080
 Const HOST = "127.0.0.1"
+' 快照工具路径（留空 "" = 禁用启动失败自动回退；填绝对路径如 "D:\\tools\\snapshot-tool.mjs"）
+Const SNAP_TOOL = ""
 
 Dim fso, shell, q, nodeExe, dshBin, url, logPath, cmdLine, i
 
@@ -50,11 +52,21 @@ End If
 cmdLine = "cmd /c " & q & q & nodeExe & q & " " & q & dshBin & q & " web --host " & HOST & " > " & q & logPath & q & " 2>&1" & q
 shell.Run cmdLine, 0, False
 
-' Wait for the port (up to WAIT_SECS seconds), then open the browser.
+' Wait for the port (up to WAIT_SECS seconds).
 For i = 1 To WAIT_SECS * 5
   If HttpOk(url) Then Exit For
   WScript.Sleep 200
 Next
+
+' Boot failed? If SNAP_TOOL is configured, roll back to the last-good snapshot and retry once.
+If Not HttpOk(url) And SNAP_TOOL <> "" Then
+  shell.Run q & nodeExe & q & " " & q & SNAP_TOOL & q & " rollback", 0, True
+  shell.Run cmdLine, 0, False
+  For i = 1 To WAIT_SECS * 5
+    If HttpOk(url) Then Exit For
+    WScript.Sleep 200
+  Next
+End If
 
 shell.Run url, 1, False
 

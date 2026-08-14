@@ -28,6 +28,10 @@
 **想换图标？把你的 `.ico` 存为 `windows\icon\custom.ico`**（该文件被 git 忽略，拉更新永不覆盖；同名替换 dsh.ico 也可但会被仓库更新覆盖）。
 图标版权注意事项（如不要使用 DeepSeek 官方 logo、Pixiv 画师作品需授权等）见 [icon/README.md](./icon/README.md)。
 
+## 启动失败自动回退（可选）
+
+把 `launch-dsh.vbs` 顶部的 `SNAP_TOOL` 填成快照工具路径（如 `"D:\\tools\\snapshot-tool.mjs"`），启动失败时会自动回退到上次良好快照并重试一次。留空则禁用。
+
 ## 修改端口
 
 如果你的 dsh web 不在 3080 端口，编辑两个 .vbs 顶部的 `Const PORT = 3080`。
