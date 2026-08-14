@@ -1,5 +1,5 @@
 /* dsh-balance-float client half (hand-authored bundle). */
-window.__ModuleLoader__.load({ id: '@dsh-external/dsh-balance-float', factory: (require) => {
+window.__ModuleLoader__.load({ id: 'dsh-balance-float', factory: (require) => {
   var module = { exports: {} };
   var exports = module.exports;
   (function (exports, module) {

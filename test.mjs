@@ -65,7 +65,7 @@ w.fetch = (url, opts) => {
   return Promise.resolve({ ok: true, json: () => Promise.resolve({ ok: true, at: Date.now(), balance_infos: [{ currency: 'CNY', total_balance: '9.98', granted_balance: '0.00', topped_up_balance: '9.98' }] }) })
 }
 w.eval(readFileSync(new URL('./client/client.js', import.meta.url), 'utf8'))
-const exp = registered['@dsh-external/dsh-balance-float'].factory(() => {})
+const exp = registered['dsh-balance-float'].factory(() => {})
 check('客户端 apply 导出', typeof exp.apply === 'function')
 
 const fx = []

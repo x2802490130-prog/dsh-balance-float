@@ -27,7 +27,7 @@ dsh plugin --profile web add github:x2802490130-prog/dsh-balance-float
 ### 方式二：npm 发布后
 
 ```bash
-dsh plugin --profile web add @dsh-external/dsh-balance-float
+dsh plugin --profile web add dsh-balance-float
 ```
 
 ### 方式二：本地链接（开发 / 尝鲜）
@@ -89,7 +89,7 @@ lib/index.js        宿主（HTTP 路由：余额 / 退出）
 client/client.js    客户端（悬浮窗 UI 与交互）
 cordis.patch.yml    bundle 补丁
 test.mjs            回归测试
-windows/            可选：Windows 隐藏窗口启动 / 停止脚本
+windows/            可选：Windows 隐藏窗口启动 / 停止脚本 + 默认图标（覆盖 icon/dsh.ico 即可替换）
 ```
 
 ## License
