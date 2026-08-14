@@ -12,8 +12,8 @@ Option Explicit
 
 Const PORT = 3080
 Const WAIT_SECS = 40
-' 绑定地址：默认仅本机(127.0.0.1)。想让手机/平板在局域网访问，改为 "0.0.0.0"
-' 并放行防火墙：netsh advfirewall firewall add rule name="DSH Web" dir=in action=allow protocol=TCP localport=3080
+' Bind host: default is loopback (127.0.0.1). Set "0.0.0.0" to allow phones/tablets on the LAN.
+' Then open the firewall: netsh advfirewall firewall add rule name="DSH Web" dir=in action=allow protocol=TCP localport=3080
 Const HOST = "127.0.0.1"
 ' Snapshot tool path. Empty = boot-failure auto-rollback disabled; set it to an
 ' absolute path like "D:\\tools\\snapshot-tool.mjs" to enable rescue-and-retry.
